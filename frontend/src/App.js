@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route} from 'react-router-dom';
+import HomeScreen from './Screens/HomeScreen';
+import BookScreen from './Screens/BookScreen';
 
 function App() {
   function openMenu(){
@@ -24,6 +27,7 @@ function App() {
       })
   }, [])
   return (
+<BrowserRouter>
     <div className="gridContainer">
     <header className="header navbar-fixed">
         <nav>
@@ -57,68 +61,8 @@ function App() {
     <main className="main">
         <div className="overlay"></div>
         <div className="content">
-        <ul className="products">
-              <li>
-                    <div className="product">
-                        <img className="product-image" src="/images/d1.jpg" alt="product"/>
-                        <div className="product-name"> 
-                            <a href="product.html">Harry Potter and the Philosopoher's Stone</a>
-                        </div>
-                        <div className="product-author">by J.K. Rowling</div>
-                        <div className="product-type">Paperback</div>
-                        <div className="product-price">$15</div>
-                        <div className="product-rating">4.5 Stars (15 Reviews)</div>
-                    </div>
-                </li>
-                <li>
-                    <div className="product">
-                        <img className="product-image" src="/images/d1.jpg" alt="product"/>
-                        <div className="product-name"> 
-                            <a href="product.html">Harry Potter and the Philosopoher's Stone</a>
-                        </div>
-                        <div className="product-author">by J.K. Rowling</div>
-                        <div className="product-type">Paperback</div>
-                        <div className="product-price">$15</div>
-                        <div className="product-rating">4.5 Stars (15 Reviews)</div>
-                    </div>
-                </li>
-                <li>
-                    <div className="product">
-                        <img className="product-image" src="/images/d1.jpg" alt="product"/>
-                        <div className="product-name"> 
-                            <a href="product.html">Harry Potter and the Philosopoher's Stone</a>
-                        </div>
-                        <div className="product-author">by J.K. Rowling</div>
-                        <div className="product-type">Paperback</div>
-                        <div className="product-price">$15</div>
-                        <div className="product-rating">4.5 Stars (15 Reviews)</div>
-                    </div>
-                </li>
-                <li>
-                    <div className="product">
-                        <img className="product-image" src="/images/d1.jpg" alt="product"/>
-                        <div className="product-name"> 
-                            <a href="product.html">Harry Potter and the Philosopoher's Stone</a>
-                        </div>
-                        <div className="product-author">by J.K. Rowling</div>
-                        <div className="product-type">Paperback</div>
-                        <div className="product-price">$15</div>
-                        <div className="product-rating">4.5 Stars (15 Reviews)</div>
-                    </div>
-                </li>
-                <li>
-                    <div className="product">
-                        <img className="product-image" src="/images/d1.jpg" alt="product"/>
-                        <div className="product-name"> 
-                            <a href="product.html">Harry Potter and the Philosopoher's Stone</a>
-                        </div>
-                        <div className="product-author">by J.K. Rowling</div>
-                        <div className="product-type">Paperback</div>
-                        <div className="product-price">$15</div>
-                        <div className="product-rating">4.5 Stars (15 Reviews)</div>
-                    </div>
-                </li>
-            </ul>
+            <Route path="/book/:id" component={BookScreen} />
+            <Route path="/" exact component={HomeScreen} />
         </div> 
     </main>
     <footer className="page-footer">
@@ -127,6 +71,7 @@ function App() {
         </div>
     </footer>
 </div>
+</BrowserRouter>
   );
 }
 
