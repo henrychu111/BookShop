@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
+import { BrowserRouter, Route, Link} from 'react-router-dom';
 import HomeScreen from './Screens/HomeScreen';
 import BookScreen from './Screens/BookScreen';
 
@@ -35,7 +35,7 @@ function App() {
                 <button onClick={openMenu}>
                     &#9776;
                 </button>
-              <a href="#" className="brand-logo">BookShop</a>
+                <Link to="/" className ="brand-logo">BookShop</Link>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li><a href="/">Cart</a></li>
                 <li><a href="/">Sign in</a></li>

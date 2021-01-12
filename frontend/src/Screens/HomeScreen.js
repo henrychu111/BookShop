@@ -1,5 +1,6 @@
 import React from 'react';
 import data from '../data';
+import {Link} from 'react-router-dom'
 
 function HomeScreen (props) {
     return <div><ul className="products">
@@ -7,9 +8,12 @@ function HomeScreen (props) {
         data.books.map(book =>   
     <li>
         <div className="product">
-            <img className="product-image" src={book.image} alt="product"/>
+            <Link to={'/book/' + book._id}>
+                {<img className="product-image" src={book.image} alt="product"/>}
+            </Link>
+            
             <div className="product-name"> 
-                <a href="product.html">{book.name}</a>
+                <Link to={'/book/' + book._id}>{book.name}</Link>
             </div>
             <div className="product-author">{book.author}</div>
             <div className="product-type">{book.type}</div>
