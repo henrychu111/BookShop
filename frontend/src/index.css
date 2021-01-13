@@ -175,19 +175,71 @@ i {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  float: left;
+  padding: 1rem;
 }
 .details-image{
-  flex: 2 1 60rem;
+  flex: 2 1 0;
 }
 .details-image img{
   float: left;
-  max-width: 50rem;
+  max-width: 40rem;
   widows: 80%;
 }
 .details-info{
+  float: left;
   flex: 1 1 30rem;
+}
+h4{
+  font-weight: bold;
+}
+.book-type{
+  font-size: 12px;
+  color: grey;
 }
 .details-action{
-  flex: 1 1 30rem;
+  border: .1rem #808080 solid;
+  border-radius: .5rem;
+  background-color: #f0f0f0;
+  padding: 1rem;
+  margin-right: 20rem;
+  float: right;
+  width: 30rem;
+  padding-left: 2.5rem ;
 }
+.details-action li input{
+  width: 3rem !important;
+}
+
+.details-action li button:focus {
+  background-color: orange !important;
+  border-radius: 3px;
+  padding: 5px;
+  border: 1px  rgb(180, 120, 8) solid;
+}
+
+.details-action li button {
+  background-color: orange !important;
+  border-radius: 3px;
+  padding: 5px;
+  border: 1px rgb(180, 120, 8) solid;
+  font-size: 11pt;
+  font-weight: bold;
+  cursor: pointer;
+}
+.button:hover{
+  border: .1rem darkblue solid;
+}
+
+.details-info ul, .details-action ul{
+  padding: 0;
+}
+.details-info li, .details-action li{
+ margin-bottom: 1rem;
+
+}
+.back-to-result{
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+
