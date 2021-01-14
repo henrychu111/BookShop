@@ -1,15 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
-import data from '../data';
+import { detailsProduct } from '../actions/productActions';
 
 function BookScreen(props) {
     const [qty, setQty] = useState(1)
-    const book = data.books.find(x => x._id === props.match.params.id);
+    const productDetails = useSelector(state => state.productDetails);
+    const { book, loading, error }= productDetails;
+    const dispatch = useDispatch;
+
+    useEffect(() => {
+        dispatch(detailsProduct());
+        return () => {
+          //
+        }
+    }, [])
+
     return (
-        <div >
+        <div>
             <div className="back-to-result">
                 <Link to="/">&lt; Back to result</Link>
             </div>
+            {loading ? <div className="loading">Loading...</div>:
+            error? <div>{error}</div>:
+            (
             <div className="details">
                 <div className="details-image">
                     <img src={book.image} alt="product"></img>
@@ -57,7 +71,7 @@ function BookScreen(props) {
                     </ul>
                 </div>
                 </div>
-            
+            )}
         </div>
     )
 }
