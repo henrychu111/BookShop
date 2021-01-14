@@ -1,4 +1,4 @@
-html{
+html:not(.tooltip) {
   font-size: 62.5%;
   box-sizing: border-box;
 }
@@ -206,8 +206,16 @@ h4{
   width: 30rem;
   padding-left: 2.5rem ;
 }
-.details-action li input{
-  width: 3rem !important;
+.details-action li select {
+  width: 5rem !important;
+  display: inline-block;
+  font-size: 10pt !important;
+  border-radius: 5px !important;
+  border: 1px solid lightgrey ;
+}
+
+.details-action li select:focus {
+  outline: none !important;
 }
 
 .details-action li button:focus {
@@ -246,4 +254,11 @@ h4{
 .loading{
   margin-top: 2rem;
 }
+
+.book-review {
+  position: relative;
+  bottom: 2px;
+}
+
+
 

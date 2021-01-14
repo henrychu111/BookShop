@@ -8,7 +8,8 @@ export default {
         type: "Paperback",
         price: 15,
         rating: 4.5,
-        reviews: 19
+        reviews: 19,
+        countInStock:8
     },
     {
         _id:"2",
@@ -19,7 +20,8 @@ export default {
         type: "Paperback",
         price: 15,
         rating: 4.3,
-        reviews: 12
+        reviews: 12,
+        countInStock:3
     },
     {
         _id:"3",
@@ -30,7 +32,8 @@ export default {
         type: "Paperback",
         price: 15,
         rating: 4.4,
-        reviews: 16
+        reviews: 16,
+        countInStock:6
     },
     {
         _id:"4",
@@ -41,7 +44,8 @@ export default {
         type: "Paperback",
         price: 15,
         rating: 4,
-        reviews: 18
+        reviews: 18,
+        countInStock:7
     },
     {
         _id:"5",
@@ -52,7 +56,8 @@ export default {
         type: "Paperback",
         price: 15,
         rating: 4.8,
-        reviews: 20
+        reviews: 20,
+        countInStock:11
     },
     {
         _id:"6",
@@ -63,7 +68,8 @@ export default {
         type: "Paperback",
         price: 15,
         rating: 4.6,
-        reviews: 21
+        reviews: 21,
+        countInStock:9
     },
     {
         _id:"7",
@@ -74,7 +80,8 @@ export default {
         type: "Paperback",
         price: 20,
         rating: 4.7,
-        reviews: 35
+        reviews: 35,
+        countInStock:5
     },
 ]
 }

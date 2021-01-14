@@ -4,6 +4,8 @@ import axios from 'axios';
 import { productListReducer } from '../reducers/productReducers';
 import {useSelector, useDispatch} from 'react-redux'
 import { listProducts } from '../actions/productActions';
+import Rating from '@material-ui/lab/Rating';
+import Tooltip from '@material-ui/core/Tooltip';
 
 function HomeScreen (props) {
     const productList = useSelector(state => state.productList);
@@ -35,7 +37,9 @@ function HomeScreen (props) {
                     <div className="product-author">{book.author}</div>
                     <div className="product-type">{book.type}</div>
                     <div className="product-price">${book.price}</div>
-                    <div className="product-rating">{book.rating} Stars({book.reviews} reviews)</div>
+                    <div className="product-rating"><Tooltip className="tooltip" title={book.rating}>
+                        <span><Rating name="half-rating-read" defaultValue={book.rating} precision={0.1} readOnly /></span></Tooltip> 
+                        <span className="book-review">({book.reviews} reviews)</span></div>
                 </div>
             </li>)
             }
