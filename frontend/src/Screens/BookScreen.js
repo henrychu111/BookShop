@@ -16,7 +16,11 @@ function BookScreen(props) {
         return () => {
           //
         }
-    }, [])
+    }, []);
+
+    const handleAddToCart = () =>{
+        props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
+    }
 
     return (
         <div>
@@ -62,17 +66,18 @@ function BookScreen(props) {
                             <b>Price:</b> ${book.price}
                         </li>
                         <li>
-                            <b>Status:</b> {book.status}
+                            <b>Status:</b> {book.countInStock > 0? "In Stock": "Unavailable"}
                         </li>
                         <li>
                             <b>Quantity:</b> &nbsp;
-                            <select valye={qty} onChange={(e) => {setQty(e.target.value)}}>
+                            <select value={qty} onChange={(e) => {setQty(e.target.value)}}>
                                 {[...Array(book.countInStock).keys()].map(x => 
                                     <option value = {x+1}>{x+1}</option>)}
                             </select>
                         </li>
                         <li>
-                            <button className="button">Add to Cart</button>
+                            {book.countInStock > 0 ? <button onClick={handleAddToCart} className="button">Add to Cart</button> :
+                            <div>Out of stock.</div> }
                         </li>
                     </ul>
                 </div>

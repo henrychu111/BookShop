@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
 import HomeScreen from './Screens/HomeScreen';
 import BookScreen from './Screens/BookScreen';
+import CartScreen from './Screens/CartScreen';
 
 function App() {
   function openMenu(){
@@ -62,6 +63,7 @@ function App() {
         <div className="overlay"></div>
         <div className="content">
             <Route path="/book/:id" component={BookScreen} />
+            <Route path="/cart/:id?"  component={CartScreen} />
             <Route path="/" exact component={HomeScreen} />
         </div> 
     </main>
