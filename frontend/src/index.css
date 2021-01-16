@@ -344,4 +344,15 @@ h4{
   border: darkblue 2px solid;
 }
 
+.button:focus {
+  background: none !important;
+}
+
+.button {
+  margin-left: 1rem;
+  border-radius: 3px;
+  border: 1px solid grey;
+  font-size: 10pt !important;
+  padding: 5px 10px;
+}
 

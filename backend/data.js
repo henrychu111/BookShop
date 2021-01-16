@@ -21,7 +21,7 @@ export default {
         price: 15,
         rating: 4.3,
         reviews: 12,
-        countInStock:1
+        countInStock:4
     },
     {
         _id:"3",

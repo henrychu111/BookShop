@@ -8,6 +8,7 @@ function CartScreen(props){
     const cart = useSelector(state => state.cart);
 
     const {cartItems} = cart;
+    // console.log(cartItems);
 
     const productId = props.match.params.id;
     const qty = props.location.search?  Number(props.location.search.split("=")[1]):1;
@@ -20,7 +21,11 @@ function CartScreen(props){
         if(productId) {
             dispatch(addToCart(productId, qty));
         }
-    }, [])
+    }, []);
+
+    const checkoutHandler = () => {
+        props.history.push("/signin?redirect=shipping")
+    }
 
     return <div className="cart">
         <div className="cart-list">
@@ -48,12 +53,11 @@ function CartScreen(props){
                                     {item.name}
                                     </Link>
                                 </div>
-                                <div>
+                                <div style={{marginTop: "10px"}}>
                                     Quantity:
-                                    <select className='cart-screen-selector'>
-                                        <option value='1'>1</option>
-                                        <option value='2'>2</option>
-                                        <option value='3'>3</option>
+                                    <select value ={item.qty} onChange={(e) => dispatch(addToCart(item.book, e.target.value))} className='cart-screen-selector'>
+                                    {[...Array(item.countInStock).keys()].map(x => 
+                                    <option value = {x+1}>{x+1}</option>)}
                                     </select>
                                     <button type='button' className='button' onClick={() => removeFromCartHandler(item.book)}>
                                         Remove
@@ -74,7 +78,7 @@ function CartScreen(props){
                 <br></br>
                 $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
             </h3>
-           <button className='button-primary' disabled= {cartItems.length === 0}>
+           <button onClick={checkoutHandler} className='button-primary' disabled= {cartItems.length === 0}>
                Proceed to Checkout
            </button>
         </div>
