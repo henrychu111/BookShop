@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Link} from 'react-router-dom';
 import HomeScreen from './Screens/HomeScreen';
 import BookScreen from './Screens/BookScreen';
 import CartScreen from './Screens/CartScreen';
+import SigninScreen from './Screens/SigninScreen';
 
 function App() {
   function openMenu(){
@@ -39,6 +40,7 @@ function App() {
                 <Link to="/" className ="brand-logo">BookShop</Link>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li><a href="/">Cart</a></li>
+                <Link to='/signin'></Link>
                 <li><a href="/">Sign in</a></li>
               </ul>
             </div>
@@ -62,6 +64,7 @@ function App() {
     <main className="main">
         <div className="overlay"></div>
         <div className="content">
+            <Route path="/signin" component={SigninScreen} />
             <Route path="/book/:id" component={BookScreen} />
             <Route path="/cart/:id?"  component={CartScreen} />
             <Route path="/" exact component={HomeScreen} />
