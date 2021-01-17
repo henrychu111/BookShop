@@ -4,8 +4,13 @@ import HomeScreen from './Screens/HomeScreen';
 import BookScreen from './Screens/BookScreen';
 import CartScreen from './Screens/CartScreen';
 import SigninScreen from './Screens/SigninScreen';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  const userSignin = useSelector(state => state.userSignin);
+  const {userInfo} = userSignin;
+
   function openMenu(){
     if(!document.querySelector(".sidebar").classList.contains("open")){
       document.querySelector(".sidebar").classList.add("open")
@@ -39,8 +44,13 @@ function App() {
                 </button>
                 <Link to="/" className ="brand-logo">BookShop</Link>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li><a href="/">Cart</a></li>
-                <Link to='/signin'></Link>
+                <li>
+                  <a href="cart.html">Cart</a>
+                  {
+                    userInfo ? <Link to= "profile">{userInfo.name}</Link>:
+                    <Link to='/signin'></Link>
+                  }
+                </li>
                 <li><a href="/">Sign in</a></li>
               </ul>
             </div>
