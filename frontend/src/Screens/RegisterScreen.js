@@ -26,14 +26,14 @@ function RegisterScreen(props) {
 
     const submitHandler =(e) =>{
         e.preventDefault();
-        dispatch(register(email, password));
+        dispatch(register(name, email, password));
     }
 
     return <div className = "form">
         <form onSubmit={submitHandler} >
             <ul className="form-container">
                 <li>
-                    <h3>Sign-In</h3>
+                    <h3>Create Account</h3>
                 </li>
                 <li>
                     {loading && <div className='loading'>Loading...</div>}

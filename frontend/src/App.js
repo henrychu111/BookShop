@@ -5,6 +5,7 @@ import BookScreen from './Screens/BookScreen';
 import CartScreen from './Screens/CartScreen';
 import SigninScreen from './Screens/SigninScreen';
 import { useSelector } from 'react-redux';
+import RegisterScreen from './Screens/RegisterScreen';
 
 function App() {
 
@@ -45,13 +46,14 @@ function App() {
                 <Link to="/" className ="brand-logo">BookShop</Link>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li>
-                  <a href="cart.html">Cart</a>
                   {
-                    userInfo ? <Link to= "profile">{userInfo.name}</Link>:
-                    <Link to='/signin'></Link>
+                    <Link to={userInfo ? "/cart" : "/signin"}>Cart</Link>
                   }
                 </li>
-                <li><a href="/">Sign in</a></li>
+                <li>{
+                    userInfo ? (<Link className="user-profile" to= "profile">{userInfo.name}</Link>):
+                    <Link to='/signin'>Sign In</Link>
+                  }</li>
               </ul>
             </div>
           </nav>
@@ -75,6 +77,7 @@ function App() {
         <div className="overlay"></div>
         <div className="content">
             <Route path="/signin" component={SigninScreen} />
+            <Route path="/register" component={RegisterScreen} />
             <Route path="/book/:id" component={BookScreen} />
             <Route path="/cart/:id?"  component={CartScreen} />
             <Route path="/" exact component={HomeScreen} />

@@ -36,7 +36,7 @@ function SigninScreen(props) {
                 </li>
                 <li>
                     {loading && <div className='loading'>Loading...</div>}
-                    {error && <div className='loading'>error...</div>}
+                    {error && <div className='error'>Wrong Username or Password</div>}
                 </li>
                 <li>
                     <label htmlFor="email">
@@ -53,7 +53,7 @@ function SigninScreen(props) {
                 <li>
                     <button type ="submit" className="button primary">Sign In</button>
                 </li>
-                <li>
+                <li style={{textAlign: "center"}}>
                     New to BookShop?
                 </li>
                 <li>
