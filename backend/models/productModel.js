@@ -9,8 +9,8 @@ const productSchema = new mongoose.Schema({
     category: { type: String, required: true},
     countInStock: { type: Number, default:0,  required: true},
     description: { type: String, required: true},
-    rating: { type: Number, default: 0, required: true},
-    reviews: { type: Number, default: 0, required: true},
+    rating: { type: Number, default: 0},
+    reviews: { type: Number, default: 0},
 });
 
 const productModel = mongoose.model("Product", productSchema);

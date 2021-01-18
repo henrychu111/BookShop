@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     res.send(products);
 });
 
-router.post('/', async(req, res) => {
+router.post('/', async (req, res) => {
     const product = new Product ({
         name: req.body.name,
         author: req.body.author,
@@ -18,14 +18,11 @@ router.post('/', async(req, res) => {
         price: req.body.price,
         category: req.body.category,
         countInStock: req.body.countInStock,
-        description: req.body.description,
-        rating: req.body.rating,
-        reviews: req.body.reviews,
-
+        description: req.body.description
     });
     const newProduct = await product.save();
     if(newProduct){
-        return res.status(201).send({ message: 'new Product Created', data: newProduct });
+        return res.status(201).send({ message: 'New Product Created', data: newProduct });
     }
     return res.status(500).send({message: 'Error in Creating Product'});
 }
