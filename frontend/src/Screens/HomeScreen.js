@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
-import axios from 'axios';
-import { productListReducer } from '../reducers/productReducers';
 import {useSelector, useDispatch} from 'react-redux'
 import { listProducts } from '../actions/productActions';
 import Rating from '@material-ui/lab/Rating';

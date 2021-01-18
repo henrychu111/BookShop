@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
+import ProductsScreen from './Screens/ProductsScreen';
 import HomeScreen from './Screens/HomeScreen';
 import BookScreen from './Screens/BookScreen';
 import CartScreen from './Screens/CartScreen';
@@ -76,6 +77,7 @@ function App() {
     <main className="main">
         <div className="overlay"></div>
         <div className="content">
+            <Route path="/books" component={ProductsScreen} />
             <Route path="/signin" component={SigninScreen} />
             <Route path="/register" component={RegisterScreen} />
             <Route path="/book/:id" component={BookScreen} />
