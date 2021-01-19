@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { listProducts, saveProduct } from '../actions/productActions';
+import { deleteProduct, listProducts, saveProduct } from '../actions/productActions';
 
 function ProductsScreen(props) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -15,16 +15,23 @@ function ProductsScreen(props) {
     const [description, setDescription] = useState('');
     const productList = useSelector(state => state.productList);
     const {loading, books, error} = productList;
+
     const productSave = useSelector(state => state.productSave);
     const {loading: loadingSave, success: successSave, error: errorSave} = productSave;
+
+    const productDelete = useSelector(state => state.productDelete);
+    const {loading: loadingDelete, success: successDelete, error: errorDelete} = productDelete;
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if(successSave){
+            setModalVisible(false)
+        }
         dispatch(listProducts());
         return () => {
           //
         }
-    }, []);
+    }, [successSave, successDelete]);
 
     const openModal = (product) =>{
         setModalVisible(true);
@@ -44,7 +51,12 @@ function ProductsScreen(props) {
         dispatch(saveProduct({
             _id: id,
             name, price, image, author, type, 
-            category, countInStock, description}));
+            category, countInStock, description
+        }));
+    }
+
+    const deleteHandler = (product) => {
+        dispatch( deleteProduct(product._id))
     }
 
     return (
@@ -61,7 +73,7 @@ function ProductsScreen(props) {
         <form onSubmit={submitHandler} >
             <ul className="form-container">
                 <li>
-                    <h3>Create Book</h3>
+                    <h3>{id? "Update Book" :" Create Book"}</h3>
                 </li>
                 <li>
                     {loadingSave && <div className='loading'>Loading...</div>}
@@ -140,7 +152,7 @@ function ProductsScreen(props) {
               <th>Name</th>
               <th>Price</th>
               <th>Category</th>
-              <th>Brand</th>
+              <th>Type</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -151,12 +163,13 @@ function ProductsScreen(props) {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>{product.category}</td>
-                <td>{product.brand}</td>
+                <td>{product.type}</td>
                 <td>
                   <button className="button" onClick ={() => openModal(product)}>
                     Edit
                   </button>
-                  <button className="button">
+                  {"   "}
+                  <button className="button" onClick = {() => deleteHandler(product)}>
                     Delete
                   </button>
                 </td>
