@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import {AppBar, Toolbar, Typography, Button, IconButton
+  , List, ListItem, ListItemText, Drawer, Avatar, Badge} from '@material-ui/core';
+import { pink } from '@material-ui/core/colors';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
 import BooksManagement from './components/BooksManagement';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Home from './components/Home';
 import BookDetails from './components/BookDetails';
 import Cart from './components/Cart';
@@ -11,93 +18,100 @@ import Shipping from './components/Shipping';
 import Payment from './components/Payment';
 import PlaceOrder from './components/PlaceOrder';
 
-function App() {
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#263238'
+    }
+  },
+  typography: {
+    "fontFamily": `'Manrope', "Yusei Magic", "Helvetica", "Arial", sans-serif`
+   }
+});
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  list: {
+    width: 250,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  round: {
+    color: theme.palette.getContrastText(pink[500]),
+    backgroundColor: pink[500],
+  }
+}));
+
+function App() {
+  const [open, setOpen] = useState(false);
   const userSignin = useSelector(state => state.userSignin);
   const {userInfo} = userSignin;
-
-  function openMenu(){
-    if(!document.querySelector(".sidebar").classList.contains("open")){
-      document.querySelector(".sidebar").classList.add("open")
-      document.querySelector(".overlay").classList.add("enabled")
-    } else {
-      document.querySelector(".overlay").classList.remove("enabled")
-      document.querySelector(".sidebar").classList.remove("open")
+  const classes = useStyles();
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
     }
+    setOpen(open)
   }
-  function closeMenu(){
-    document.querySelector(".sidebar").classList.remove("open")
-    document.querySelector(".overlay").classList.remove("enabled")
-}
 
-  useEffect(() => {
-      document.querySelector(".main").addEventListener("click", function() {
-        if(document.querySelector(".sidebar").classList.contains("open")) {
-          document.querySelector(".sidebar").classList.remove("open")
-          document.querySelector(".overlay").classList.remove("enabled")
-        }
-      })
-  }, [])
+  const list = () => <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <Typography variant="h5" style={{margin: "10px 10px 0px"}} className={classes.title}>
+          Browse Genres
+      </Typography>
+    <List>
+      {['Fantasy', 'Action', 'Sci-fi'].map((text, index) => (
+        <ListItem button key={text}>
+          <ListItemText primary={text} />
+        </ListItem>
+      ))}
+    </List>
+  </div>
+
   return (
-<BrowserRouter>
-    <div className="gridContainer">
-    <header className="header navbar-fixed">
-        <nav>
-            <div className="nav-wrapper">
-                <button onClick={openMenu}>
-                    &#9776;
-                </button>
-                <Link to="/" className ="brand-logo">BookShop</Link>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li>
-                  {
-                    <Link to={userInfo ? "/cart" : "/signin"}>Cart</Link>
-                  }
-                </li>
-                <li>{
-                    userInfo ? (<Link className="user-profile" to= "profile">{userInfo.name}</Link>):
-                    <Link to='/signin'>Sign In</Link>
-                  }</li>
-              </ul>
-            </div>
-          </nav>
-    </header>
-    <aside className="sidebar">
-        <h3>Browse Genres</h3>
-        <button className="sidebar-close-button" onClick={closeMenu}><i className="material-icons">cancel</i></button>
-        <ul>
-            <li className="genres">
-                <a href="index.html">Fantasy</a>
-            </li>
-            <li className="genres">
-                <a href="index.html">Action</a>
-            </li>
-            <li className="genres">
-                <a href="index.html">Sci-Fi</a>
-            </li>
-        </ul>
-    </aside>
-    <main className="main">
-        <div className="overlay"></div>
-        <div className="content">
-            <Route path="/books" component={BooksManagement} />
-            <Route path="/signin" component={Signin} />
-            <Route path="/register" component={Register} />
-            <Route path="/book/:id" component={BookDetails} />
-            <Route path="/cart/:id?"  component={Cart} />
-            <Route path="/shipping"  component={Shipping} />
-            <Route path="/payment"  component={Payment} />
-            <Route path="/placeorder"  component={PlaceOrder} />
-            <Route path="/" exact component={Home} />
-        </div> 
-    </main>
-    <footer className="page-footer">
-        <div>
-            All rights reserved
-        </div>
-    </footer>
-</div>
-</BrowserRouter>
+      <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+          <div className={classes.root}>
+                <AppBar position="static" color="primary" position="fixed">
+                  <Toolbar>
+                    <IconButton edge="start" color="inherit" className={classes.menuButton} aria-label="menu">
+                      <div><MenuIcon onClick={toggleDrawer(true)}/>
+                      <Drawer anchor='left' open={open} onClose={toggleDrawer(false)}>
+                          {list()}
+                      </Drawer>
+                      </div>
+                    </IconButton>
+                    <Link to="/" className ={classes.title}><Typography variant="h6" className="brand-logo">
+                      BookWorm
+                    </Typography></Link>
+                    <Link to={userInfo ? "/cart" : "/signin"}>
+                    <IconButton style={{marginRight: "20px"}}><Badge badgeContent={4} color="secondary"><ShoppingCartIcon /></Badge></IconButton></Link>
+                    {userInfo ? (<Link to= "books"><Avatar className={classes.round}>{userInfo.name.slice(0,1)}</Avatar></Link>):
+                          <Link to='/signin'><Button color="inherit">LOGIN</Button></Link>}
+                  </Toolbar>
+                </AppBar>
+              </div>
+                  <Route path="/books" component={BooksManagement} />
+                  <Route path="/signin" component={Signin} />
+                  <Route path="/register" component={Register} />
+                  <Route path="/book/:id" component={BookDetails} />
+                  <Route path="/cart/:id?"  component={Cart} />
+                  <Route path="/shipping"  component={Shipping} />
+                  <Route path="/payment"  component={Payment} />
+                  <Route path="/placeorder"  component={PlaceOrder} />
+                  <Route path="/" exact component={Home} />
+      </MuiThemeProvider>
+      </BrowserRouter>
   );
 }
 

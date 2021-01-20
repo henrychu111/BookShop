@@ -1,5 +1,4 @@
-html:not(.tooltip) {
-  font-size: 62.5%;
+html {
   box-sizing: border-box;
 }
 body {
@@ -37,15 +36,23 @@ nav ul a {
   padding: 15px !important;
 }
 .brand-logo {
-  margin-left: 20px;
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem !important;
+  font-family: 'Hanalei', cursive !important;
+  font-size: 1.7rem !important;
+  color: white;
+}
+
+.brand-logo:hover {
+  opacity: 0.8;
 }
 a{
   text-decoration: none;
 }
 a:hover{
   color: orange;
+}
+
+button {
+  color: white !important;
 }
 /* Home screen */
 .products{

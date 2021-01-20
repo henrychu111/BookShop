@@ -13,10 +13,7 @@ function Signin(props) {
 
     useEffect(() => {
         if(userInfo){
-            props.history.push('/' + redirect)
-        }
-        return () => {
-          //
+            props.history.push(redirect)
         }
     }, [userInfo]);
 
