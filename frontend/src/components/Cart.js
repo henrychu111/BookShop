@@ -10,16 +10,16 @@ function Cart(props){
     const {cartItems} = cart;
     // console.log(cartItems);
 
-    const productId = props.match.params.id;
+    const bookId = props.match.params.id;
     const qty = props.location.search?  Number(props.location.search.split("=")[1]):1;
     const dispatch = useDispatch();
-    const removeFromCartHandler = (productId) => {
-        dispatch(removeFromCart(productId))
+    const removeFromCartHandler = (bookId) => {
+        dispatch(removeFromCart(bookId))
     }
 
     useEffect(() => {
-        if(productId) {
-            dispatch(addToCart(productId, qty));
+        if(bookId) {
+            dispatch(addToCart(bookId, qty));
         }
     }, []);
 

@@ -46,8 +46,7 @@ router.put('/:id', isAuth, isAdmin, async (req, res) => {
     return res.status(500).send({message: 'Error in Updating Book'});
     }});
 
-router.delete("/:id", isAuth, isAdmin, async(req, res) =>{
-
+router.delete("/:id", isAuth, isAdmin, async (req, res) =>{
         const deletedBook = await Book.findById(req. params.id);
         if (deletedBook) {
             await deletedBook.remove();

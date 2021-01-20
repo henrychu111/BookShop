@@ -29,7 +29,7 @@ function BookDetails(props) {
             (
             <div className="details">
                 <div className="details-image">
-                    <img src={book.image} alt="product"></img>
+                    <img src={book.image} alt="book"></img>
                 </div>
                 <div className="details-info">
                     <ul>

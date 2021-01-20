@@ -30,6 +30,7 @@ function BooksManagement(props) {
         dispatch(listBooks());
     }, [successSave, successDelete]);
 
+
     const openModal = (book) =>{
         setModalVisible(true);
         setId(book._id);
@@ -59,9 +60,9 @@ function BooksManagement(props) {
     return (
         <div className="content content-margined">
       <div className="product-header">
-        <h3>Products</h3>
+        <h3>Books</h3>
         <button className="button primary" onClick={() => openModal({})}>
-          Create Product
+          Create Book
         </button>
       </div>
       
@@ -154,19 +155,19 @@ function BooksManagement(props) {
             </tr>
           </thead>
           <tbody>
-            {books.map((product) => (
-              <tr key={product._id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>{product.category}</td>
-                <td>{product.type}</td>
+            {books.map((book) => (
+              <tr key={book._id}>
+                <td>{book._id}</td>
+                <td>{book.name}</td>
+                <td>{book.price}</td>
+                <td>{book.category}</td>
+                <td>{book.type}</td>
                 <td>
-                  <button className="button" onClick ={() => openModal(product)}>
+                  <button className="button" onClick ={() => openModal(book)}>
                     Edit
                   </button>
                   {"   "}
-                  <button className="button" onClick = {() => deleteHandler(product)}>
+                  <button className="button" onClick = {() => deleteHandler(book)}>
                     Delete
                   </button>
                 </td>
