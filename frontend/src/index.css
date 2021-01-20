@@ -422,3 +422,25 @@ th{
 tbody > tr:nth-child(odd){
   background-color: lightyellow;
 }
+
+/* checkout */
+
+.checkout{
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
+  margin: auto;
+  margin-top: 4rem;
+}
+.checkout > div{
+  border-top: .3rem grey solid;
+  color: grey;
+  flex: 1.1;
+}
+.checkout > div.active{
+  border-top: .3rem orange solid;
+  color: orange;
+}
+.radio{
+  display: inline-block !important;
+}

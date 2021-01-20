@@ -7,6 +7,9 @@ import Cart from './components/Cart';
 import Signin from './components/Signin';
 import { useSelector } from 'react-redux';
 import Register from './components/Register';
+import Shipping from './components/Shipping';
+import Payment from './components/Payment';
+import PlaceOrder from './components/PlaceOrder';
 
 function App() {
 
@@ -82,6 +85,9 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/book/:id" component={BookDetails} />
             <Route path="/cart/:id?"  component={Cart} />
+            <Route path="/shipping"  component={Shipping} />
+            <Route path="/payment"  component={Payment} />
+            <Route path="/placeorder"  component={PlaceOrder} />
             <Route path="/" exact component={Home} />
         </div> 
     </main>

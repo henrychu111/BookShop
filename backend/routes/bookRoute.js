@@ -8,6 +8,16 @@ router.get('/', async (req, res) => {
     const books = await Book.find({});
     res.send(books);
 });
+
+router.get('/:id', async (req, res) => {
+    const book = await Book.findOne({_id:req.params.id});
+    if (book) {
+        res.send(book);
+    } else {
+        res.status(404).send({message: "Cannot Find Book"});
+    }
+    
+});
 router.post('/', isAuth, isAdmin, async (req, res) => {
     const book = new Book({
         name: req.body.name,
