@@ -414,6 +414,7 @@ input{
 
 .table{
   width: 100%;
+  margin: 20px;
 }
 th{
   text-align: left;

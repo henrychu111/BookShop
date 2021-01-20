@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const productSchema = new mongoose.Schema({
+const bookSchema = new mongoose.Schema({
     name: { type: String, required: true},
     author: { type: String, required: true},
     image: { type: String, required: true},
@@ -13,6 +13,6 @@ const productSchema = new mongoose.Schema({
     reviews: { type: Number, default: 0},
 });
 
-const productModel = mongoose.model("Product", productSchema);
+const bookModel = mongoose.model("Book", bookSchema);
 
-export default productModel;
+export default bookModel;

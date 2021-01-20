@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import config from './config';
 import mongoose from 'mongoose';
 import userRoute from './routes/userRoutes';
-import productRoute from './routes/productRoute';
+import bookRoute from './routes/bookRoute';
 import bodyParser from 'body-parser';
 
 dotenv.config();
@@ -20,7 +20,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use("/api/users", userRoute);
-app.use("/api/books", productRoute);
+app.use("/api/books", bookRoute);
 
 // app.get("/api/books/:id", (req,res) => {
 //     const productId = req.params.id;

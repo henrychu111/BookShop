@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProduct, listProducts, saveProduct } from '../actions/productActions';
+import { deleteBook, listBooks, saveBook } from '../actions/bookActions';
 
-function ProductsScreen(props) {
+function BooksManagement(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const [id, setId] = useState('');
     const [name, setName] = useState('');
@@ -13,50 +13,47 @@ function ProductsScreen(props) {
     const [category, setCategory] = useState('');
     const [countInStock, setCountInStock] = useState('');
     const [description, setDescription] = useState('');
-    const productList = useSelector(state => state.productList);
-    const {loading, books, error} = productList;
+    const booksList = useSelector(state => state.booksList);
+    const {loading, books, error} = booksList;
 
-    const productSave = useSelector(state => state.productSave);
-    const {loading: loadingSave, success: successSave, error: errorSave} = productSave;
+    const bookSave = useSelector(state => state.bookSave);
+    const {loading: loadingSave, success: successSave, error: errorSave} = bookSave;
 
-    const productDelete = useSelector(state => state.productDelete);
-    const {loading: loadingDelete, success: successDelete, error: errorDelete} = productDelete;
+    const bookDelete = useSelector(state => state.bookDelete);
+    const {loading: loadingDelete, success: successDelete, error: errorDelete} = bookDelete;
     const dispatch = useDispatch();
 
     useEffect(() => {
         if(successSave){
-            setModalVisible(false)
+           setModalVisible(false)
         }
-        dispatch(listProducts());
-        return () => {
-          //
-        }
+        dispatch(listBooks());
     }, [successSave, successDelete]);
 
-    const openModal = (product) =>{
+    const openModal = (book) =>{
         setModalVisible(true);
-        setId(product._id);
-        setName(product.name);
-        setAuthor(product.author);
-        setPrice(product.price);
-        setImage(product.image);
-        setDescription(product.description);
-        setCategory(product.category);
-        setType(product.type);
-        setCountInStock(product.countInStock);
+        setId(book._id);
+        setName(book.name);
+        setAuthor(book.author);
+        setPrice(book.price);
+        setImage(book.image);
+        setDescription(book.description);
+        setCategory(book.category);
+        setType(book.type);
+        setCountInStock(book.countInStock);
     }
 
     const submitHandler =(e) =>{
         e.preventDefault();
-        dispatch(saveProduct({
+        dispatch(saveBook({
             _id: id,
             name, price, image, author, type, 
             category, countInStock, description
         }));
     }
 
-    const deleteHandler = (product) => {
-        dispatch( deleteProduct(product._id))
+    const deleteHandler = (book) => {
+        dispatch( deleteBook(book._id))
     }
 
     return (
@@ -182,4 +179,4 @@ function ProductsScreen(props) {
     );  
 }
 
-export default ProductsScreen;
+export default BooksManagement;

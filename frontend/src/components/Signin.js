@@ -1,16 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { register } from '../actions/userActions';
+import { signin } from '../actions/userActions';
 
-function RegisterScreen(props) {
-
-    const [name, setName] = useState('');
+function Signin(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
-    const [rePassword, setRePassword] = useState('')
-    const userRegister = useSelector(state => state.userRegister);
-    const {loading, userInfo, error} = userRegister;
+    const userSignin = useSelector(state => state.userSignin);
+    const {loading, userInfo, error} = userSignin;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -24,25 +21,18 @@ function RegisterScreen(props) {
 
     const submitHandler =(e) =>{
         e.preventDefault();
-        dispatch(register(name, email, password));
+        dispatch(signin(email, password));
     }
 
     return <div className = "form">
         <form onSubmit={submitHandler} >
             <ul className="form-container">
                 <li>
-                    <h3>Create Account</h3>
+                    <h3>Sign-In</h3>
                 </li>
                 <li>
                     {loading && <div className='loading'>Loading...</div>}
-                    {error && <div className='loading'>error...</div>}
-                </li>
-                <li>
-                    <label htmlFor="name">
-                        Name
-                    </label>
-                    <input type ="name" name ="name" id ="name" onChange ={(e) => setName(e.target.value)}> 
-                    </input>
+                    {error && <div className='error'>Wrong Username or Password</div>}
                 </li>
                 <li>
                     <label htmlFor="email">
@@ -57,20 +47,19 @@ function RegisterScreen(props) {
                     </input>
                 </li>
                 <li>
-                    <label htmlFor ="rePassword">Re-enter Password</label>
-                    <input type ="rePassword" id ="rePassword" name="rePassword" onChange ={(e) => setRePassword(e.target.value)}>
-                    </input>
+                    <button type ="submit" className="button primary">Sign In</button>
+                </li>
+                <li style={{textAlign: "center"}}>
+                    New to BookShop?
                 </li>
                 <li>
-                    <button type ="submit" className="button primary">Register</button>
+                    <Link to="register" className ="button secondary">Create your BookShop account</Link>
                 </li>
-                <li>
-                    Already have an account? <Link to='/signin'>Sign-in</Link>
-                </li>
+
             </ul>
         </form>
     </div>
 }
 
-export default RegisterScreen;
+export default Signin;
 

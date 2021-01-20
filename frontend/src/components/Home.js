@@ -1,20 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
-import { listProducts } from '../actions/productActions';
+import { listBooks } from '../actions/bookActions';
 import Rating from '@material-ui/lab/Rating';
 import Tooltip from '@material-ui/core/Tooltip';
 
-function HomeScreen (props) {
-    const productList = useSelector(state => state.productList);
-    const {books, loading, error} = productList;
+function Home (props) {
+    const booksList = useSelector(state => state.booksList);
+    const {books, loading, error} = booksList;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(listProducts());
-
-        return () => {
-        };  
+        dispatch(listBooks());
     }, [])
 
     return  loading? <div className="loading">Loading...</div>:
@@ -44,4 +41,4 @@ function HomeScreen (props) {
         </ul></div>
 }
 
-export default HomeScreen;
+export default Home;

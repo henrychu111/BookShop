@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../actiontypes/cart";
 
 function cartReducer(state= {cartItems:[]}, action) {
     switch(action.type) {

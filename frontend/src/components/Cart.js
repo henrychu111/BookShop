@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
-function CartScreen(props){
+function Cart(props){
 
     const cart = useSelector(state => state.cart);
 
@@ -85,4 +85,4 @@ function CartScreen(props){
     </div>
 }
 
-export default CartScreen
+export default Cart

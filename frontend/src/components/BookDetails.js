@@ -1,21 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { detailsProduct } from '../actions/productActions';
+import { detailsBook } from '../actions/bookActions';
 import Rating from '@material-ui/lab/Rating';
 import Tooltip from '@material-ui/core/Tooltip';
 
-function BookScreen(props) {
+function BookDetails(props) {
     const [qty, setQty] = useState(1)
-    const productDetails = useSelector(state => state.productDetails);
-    const { book, loading, error }= productDetails;
+    const bookDetails = useSelector(state => state.bookDetails);
+    const { book, loading, error }= bookDetails;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(detailsProduct(props.match.params.id));
-        return () => {
-          //
-        }
+        dispatch(detailsBook(props.match.params.id));
     }, []);
 
     const handleAddToCart = () =>{
@@ -87,4 +84,4 @@ function BookScreen(props) {
     )
 }
 
-export default BookScreen;
+export default BookDetails;

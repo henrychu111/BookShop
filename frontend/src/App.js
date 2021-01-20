@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
-import ProductsScreen from './Screens/ProductsScreen';
-import HomeScreen from './Screens/HomeScreen';
-import BookScreen from './Screens/BookScreen';
-import CartScreen from './Screens/CartScreen';
-import SigninScreen from './Screens/SigninScreen';
+import BooksManagement from './components/BooksManagement';
+import Home from './components/Home';
+import BookDetails from './components/BookDetails';
+import Cart from './components/Cart';
+import Signin from './components/Signin';
 import { useSelector } from 'react-redux';
-import RegisterScreen from './Screens/RegisterScreen';
+import Register from './components/Register';
 
 function App() {
 
@@ -77,12 +77,12 @@ function App() {
     <main className="main">
         <div className="overlay"></div>
         <div className="content">
-            <Route path="/books" component={ProductsScreen} />
-            <Route path="/signin" component={SigninScreen} />
-            <Route path="/register" component={RegisterScreen} />
-            <Route path="/book/:id" component={BookScreen} />
-            <Route path="/cart/:id?"  component={CartScreen} />
-            <Route path="/" exact component={HomeScreen} />
+            <Route path="/books" component={BooksManagement} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/register" component={Register} />
+            <Route path="/book/:id" component={BookDetails} />
+            <Route path="/cart/:id?"  component={Cart} />
+            <Route path="/" exact component={Home} />
         </div> 
     </main>
     <footer className="page-footer">
