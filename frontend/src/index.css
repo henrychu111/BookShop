@@ -5,6 +5,7 @@ body {
   font: 1.6rem Helvetica;
   height: 100vh;
   margin: 0;
+  overflow-x: hidden;
 }
 #root{
   height: 100%;
@@ -36,10 +37,12 @@ nav ul a {
   padding: 15px !important;
 }
 .brand-logo {
-  font-family: 'Hanalei', cursive !important;
+  font-family: 'Pacifico', cursive !important;
   font-size: 1.7rem !important;
   color: white;
 }
+
+
 
 .brand-logo:hover {
   opacity: 0.8;
@@ -47,13 +50,11 @@ nav ul a {
 a{
   text-decoration: none;
 }
-a:hover{
-  color: orange;
-}
 
-button {
+
+/* button {
   color: white !important;
-}
+} */
 /* Home screen */
 .products{
   display: flex;
@@ -110,10 +111,10 @@ button {
   cursor: pointer;
   margin-top: 10px;
 }
-button:active{
+/* button:active{
   background: none;
   opacity: .5;
-}
+} */
 .sidebar{
   position: fixed;
   transition: all 0.5s;
@@ -241,9 +242,9 @@ h4{
   font-weight: bold;
   cursor: pointer;
 }
-.button:hover{
+/* .button:hover{
   border: .1rem darkblue solid;
-}
+} */
 
 .details-info ul, .details-action ul{
   padding: 0;
@@ -259,7 +260,7 @@ h4{
 }
 
 .loading{
-  margin-top: 2rem;
+  margin: 5px !important
 }
 
 .book-review {
@@ -402,10 +403,10 @@ input{
 }
 
 .error {
-  font-size: 11pt;
+  font-size: 9pt !important;
   color: red;
   font-weight: bold;
-  text-align: center;
+  margin: 5px 5px 10px !important;
 }
 
 .user-profile {

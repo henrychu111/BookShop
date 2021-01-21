@@ -18,40 +18,11 @@ import Shipping from './components/Shipping';
 import Payment from './components/Payment';
 import PlaceOrder from './components/PlaceOrder';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#263238'
-    }
-  },
-  typography: {
-    "fontFamily": `'Manrope', "Yusei Magic", "Helvetica", "Arial", sans-serif`
-   }
-});
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  list: {
-    width: 250,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  round: {
-    color: theme.palette.getContrastText(pink[500]),
-    backgroundColor: pink[500],
-  }
-}));
-
 function App() {
   const [open, setOpen] = useState(false);
   const userSignin = useSelector(state => state.userSignin);
-  const {userInfo} = userSignin;
+  const userRegister = useSelector(state => state.userRegister);
+  const {userInfo} =  userSignin.userInfo ? userSignin : userRegister;
   const classes = useStyles();
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -59,6 +30,7 @@ function App() {
     }
     setOpen(open)
   }
+  console.log(userInfo);
 
   const list = () => <div
       className={classes.list}
@@ -82,7 +54,7 @@ function App() {
       <BrowserRouter>
       <MuiThemeProvider theme={theme}>
           <div className={classes.root}>
-                <AppBar position="static" color="primary" position="fixed">
+                <AppBar position="static" color="primary" position="sticky">
                   <Toolbar>
                     <IconButton edge="start" color="inherit" className={classes.menuButton} aria-label="menu">
                       <div><MenuIcon onClick={toggleDrawer(true)}/>
@@ -92,12 +64,12 @@ function App() {
                       </div>
                     </IconButton>
                     <Link to="/" className ={classes.title}><Typography variant="h6" className="brand-logo">
-                      BookWorm
+                      BookShop
                     </Typography></Link>
                     <Link to={userInfo ? "/cart" : "/signin"}>
-                    <IconButton style={{marginRight: "20px"}}><Badge badgeContent={4} color="secondary"><ShoppingCartIcon /></Badge></IconButton></Link>
-                    {userInfo ? (<Link to= "books"><Avatar className={classes.round}>{userInfo.name.slice(0,1)}</Avatar></Link>):
-                          <Link to='/signin'><Button color="inherit">LOGIN</Button></Link>}
+                    <IconButton className={classes.navBtn} style={{marginRight: "20px"}}><Badge badgeContent={4} color="secondary"><ShoppingCartIcon /></Badge></IconButton></Link>
+                    {userInfo ? (<Link to= "books"><Avatar className={classes.round}>{userInfo.name.slice(0,1).toUpperCase()}</Avatar></Link>):
+                          <Link to='/signin'><Button color="inherit" className={classes.navBtn}>LOGIN</Button></Link>}
                   </Toolbar>
                 </AppBar>
               </div>
@@ -114,5 +86,39 @@ function App() {
       </BrowserRouter>
   );
 }
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#263238'
+    }
+  },
+  typography: {
+    "fontFamily": `'Manrope', "Yusei Magic", "Helvetica", "Arial", sans-serif`,
+    "color": '#263238'
+   }
+});
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  list: {
+    width: 250,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  round: {
+    color: theme.palette.getContrastText(pink[500]),
+    backgroundColor: pink[500],
+  },
+  navBtn: {
+    color: "white"
+  }
+}));
 
 export default App;
