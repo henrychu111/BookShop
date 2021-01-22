@@ -10,51 +10,23 @@ body {
 #root{
   height: 100%;
 }
-.gridContainer{
-  display: grid;
-  grid-template-areas: 
-  "header"
-  "main";
-  grid-template-columns: 1fr;
-  grid-template-rows: 5rem 1fr 5rem;
-  height: 100%;
-}
-nav { 
-  background-color: rgb(70, 63, 63) !important;
-}
 
-nav ul a {
-  font-size: 1.5rem !important;
-}
-.main{
-  grid-area: main;
-}
-.page-footer{
-  background-color: rgb(70, 63, 63) !important;
-  font-size: 12pt !important;
-  text-align: center;
-  height: 50px;
-  padding: 15px !important;
-}
+
 .brand-logo {
   font-family: 'Pacifico', cursive !important;
   font-size: 1.7rem !important;
   color: white;
 }
 
-
-
 .brand-logo:hover {
   opacity: 0.8;
 }
+
 a{
   text-decoration: none;
 }
 
 
-/* button {
-  color: white !important;
-} */
 /* Home screen */
 .products{
   display: flex;

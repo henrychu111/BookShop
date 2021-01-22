@@ -25,7 +25,7 @@ function Home (props) {
                 <Grid className={classes.grid} container spacing={1}>{books.map(book => <Grid item xs={12} sm={6} md={4} lg={3}><Card className={classes.root}>
                     <Link to={'/book/' + book._id}><CardMedia
                     className={classes.media}
-                    image={book.image}
+                    image="/images/d1.jpg"
                     title="Paella dish"
                     /></Link>
                     <CardContent>
@@ -53,11 +53,11 @@ function Home (props) {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 250,
+      maxWidth: 270,
       margin: "10px"
     },
     media: {
-      height: 220,
+      height: 250,
       paddingTop: '56.25%', // 16:9
     },
     author: {
@@ -70,7 +70,8 @@ const useStyles = makeStyles((theme) => ({
         color: '#00897b'
     },
     grid: {
-        margin: "50px"
+        margin: "35px",
+        
     }
   }));
 

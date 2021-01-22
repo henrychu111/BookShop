@@ -22,6 +22,8 @@ function App() {
   const [open, setOpen] = useState(false);
   const userSignin = useSelector(state => state.userSignin);
   const userRegister = useSelector(state => state.userRegister);
+  const cart = useSelector(state => state.cart);
+  const {cartItems} = cart
   const {userInfo} =  userSignin.userInfo ? userSignin : userRegister;
   const classes = useStyles();
   const toggleDrawer = (open) => (event) => {
@@ -30,7 +32,8 @@ function App() {
     }
     setOpen(open)
   }
-  console.log(userInfo);
+
+  
 
   const list = () => <div
       className={classes.list}
@@ -54,7 +57,7 @@ function App() {
       <BrowserRouter>
       <MuiThemeProvider theme={theme}>
           <div className={classes.root}>
-                <AppBar position="static" color="primary" position="sticky">
+                <AppBar position="static" color="primary" position="fixed">
                   <Toolbar>
                     <IconButton edge="start" color="inherit" className={classes.menuButton} aria-label="menu">
                       <div><MenuIcon onClick={toggleDrawer(true)}/>
@@ -67,21 +70,23 @@ function App() {
                       BookShop
                     </Typography></Link>
                     <Link to={userInfo ? "/cart" : "/signin"}>
-                    <IconButton className={classes.navBtn} style={{marginRight: "20px"}}><Badge badgeContent={4} color="secondary"><ShoppingCartIcon /></Badge></IconButton></Link>
-                    {userInfo ? (<Link to= "books"><Avatar className={classes.round}>{userInfo.name.slice(0,1).toUpperCase()}</Avatar></Link>):
+                    <IconButton className={classes.navBtn} style={{marginRight: "20px"}}><Badge badgeContent={cartItems.length > 0 ? cartItems.length : null} color="secondary"><ShoppingCartIcon /></Badge></IconButton></Link>
+                    {userInfo ? (<Link to= "/books"><Avatar className={classes.round}>{userInfo.name.slice(0,1).toUpperCase()}</Avatar></Link>):
                           <Link to='/signin'><Button color="inherit" className={classes.navBtn}>LOGIN</Button></Link>}
                   </Toolbar>
                 </AppBar>
               </div>
-                  <Route path="/books" component={BooksManagement} />
-                  <Route path="/signin" component={Signin} />
-                  <Route path="/register" component={Register} />
-                  <Route path="/book/:id" component={BookDetails} />
-                  <Route path="/cart/:id?"  component={Cart} />
-                  <Route path="/shipping"  component={Shipping} />
-                  <Route path="/payment"  component={Payment} />
-                  <Route path="/placeorder"  component={PlaceOrder} />
-                  <Route path="/" exact component={Home} />
+                  <div style={{marginTop: "100px"}}>
+                    <Route path="/books" component={BooksManagement} />
+                    <Route path="/signin" component={Signin} />
+                    <Route path="/register" component={Register} />
+                    <Route path="/book/:id" component={BookDetails} />
+                    <Route path="/cart/:id?"  component={Cart} />
+                    <Route path="/shipping"  component={Shipping} />
+                    <Route path="/payment"  component={Payment} />
+                    <Route path="/placeorder"  component={PlaceOrder} />
+                    <Route path="/" exact component={Home} />
+                  </div>
       </MuiThemeProvider>
       </BrowserRouter>
   );
