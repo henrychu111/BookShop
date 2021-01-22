@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import { detailsBook } from '../actions/bookActions';
 import Rating from '@material-ui/lab/Rating';
 import Tooltip from '@material-ui/core/Tooltip';
-import { Typography,CircularProgress, Grid, Box, Select, MenuItem, Button } from '@material-ui/core';
+import { Typography,CircularProgress, Grid, Box, Select, MenuItem, Button, InputLabel, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 function BookDetails(props) {
@@ -28,8 +28,8 @@ function BookDetails(props) {
             {loading ? <CircularProgress className="loading"/> :
               error ? <Typography className='error'>Loading Error</Typography> :
               <Grid className={classes.grid} container spacing={1}>
-                  <Grid item xs={12} sm={6} md={6} lg={4} spacing={1}><img style={{width: "80%"}} src="/images/d1.jpg" alt="book"></img></Grid>
-                  <Grid item xs={12} sm={6} md={6} lg={4} spacing={1}>
+                  <Grid item xs={12} sm={6} md={6} lg={4}><img style={{width: "80%"}} src="/images/d1.jpg" alt="book"></img></Grid>
+                  <Grid item xs={12} sm={6} md={6} lg={4}>
                       <Typography variant="h4" className={classes.title}>{book.name}</Typography>
                       <Typography color="textSecondary" className={classes.author}>
                             {book.author}
@@ -49,19 +49,21 @@ function BookDetails(props) {
                            Description: {book.description}
                         </Typography>
                   </Grid>
-                  <Grid xs={12} sm={6} md={6} lg={4} spacing={1}>
+                  <Grid item xs={12} sm={6} md={6} lg={4}>
                       <Box className={classes.box}>
                           <Typography className={classes.addToCart}>Price: ${book.price}</Typography>
                           <Typography className={classes.addToCart}>Status: {book.countInStock > 0? "In Stock": "Unavailable"}</Typography>
-                          <Typography className={classes.addToCart}>Quantity: <Select
+                          <FormControl className={classes.formControl}>
+                          <InputLabel id="demo-simple-select-label">Quantity</InputLabel><Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={qty} onChange={(e) => {setQty(e.target.value)}}
+                                className={classes.selectEmpty}
                                 >
                                     {[...Array(book.countInStock).keys()].map(x => 
-                                    <MenuItem value = {x+1}>{x+1}</MenuItem>)}
-                                </Select></Typography> 
-                            <Button disabled={book.countInStock == 0} 
+                                    <MenuItem key={x+1} value = {x+1}>{x+1}</MenuItem>)}
+                                </Select></FormControl>
+                            <Button disabled={book.countInStock === 0} 
                                 className={classes.addToCartBtn} variant="contained" 
                                 color="primary"
                                 onClick={handleAddToCart}>Add To Cart</Button>
@@ -90,10 +92,8 @@ const useStyles = makeStyles((theme) => ({
         border: "1px solid grey",
         minWidth: "250px",
         width: "30%",
-        margin: "auto",
         borderRadius: "5px",
         padding: "20px 35px 20px 20px",
-        marginTop: "30px",
         backgroundColor: "#F5F5F5"
     },
     addToCart: {
@@ -101,7 +101,14 @@ const useStyles = makeStyles((theme) => ({
     },
     addToCartBtn: {
         marginTop: "20px"
-    }
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+      },
+      selectEmpty: {
+        marginTop: theme.spacing(2),
+      },
   }));
 
 export default BookDetails;

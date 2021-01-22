@@ -1,5 +1,5 @@
 import { Container, Typography, Table, TableHead, IconButton,
-    TableRow, TableCell, Paper, TableBody, TableContainer, Select, MenuItem, Grid, Box, Button } from '@material-ui/core';
+    TableRow, TableCell, Paper, TableBody, TableContainer, Select, MenuItem, Grid, Box, Button, InputLabel } from '@material-ui/core';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -35,8 +35,8 @@ function Cart(props){
         <>
             <Container>
                 <Typography style={{margin: "20px 0px 20px"}} variant="h4">Shopping Cart</Typography>
-                <Grid container>
-                    <Grid item sm={8} spacing={2}>
+                <Grid container spacing={2}>
+                    <Grid item sm={8} >
                         {cartItems.length === 0 ? <Typography>Cart is Empty</Typography> : 
                             <TableContainer className={classes.table} component={Paper}>
                                 <Table aria-label="simple table">
@@ -57,14 +57,15 @@ function Cart(props){
                                         </TableCell>
                                         <TableCell className={classes.cell}><Link to={'/book/' + item.book}>{item.name}</Link></TableCell>
                                         <TableCell className={classes.cell}>
-                                        <Typography className={classes.addToCart}>Quantity: &nbsp;<Select
+                                        <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
+                                        <Select 
                                                 labelId="demo-simple-select-label"
                                                 id="demo-simple-select"
                                                 value={item.qty} onChange={(e) => dispatch(addToCart(item.book, e.target.value))}
                                                 >
                                                     {[...Array(item.countInStock).keys()].map(x => 
-                                                    <MenuItem value = {x+1}>{x+1}</MenuItem>)}
-                                                </Select></Typography> 
+                                                    <MenuItem key={x+1} value = {x+1}>{x+1}</MenuItem>)}
+                                                </Select>
                                         </TableCell>
                                         <TableCell className={classes.cell}><IconButton onClick={() => removeFromCartHandler(item.book)}><DeleteIcon /></IconButton></TableCell>
                                         <TableCell className={classes.cell} align="right">
@@ -76,7 +77,7 @@ function Cart(props){
                                 </Table>
                             </TableContainer>}
                     </Grid>
-                    <Grid item sm={4} spacing={2}>
+                    <Grid item sm={4}>
                     <Box className={classes.box}>
                         <Typography variant="h5">
                         Subtotal ( {cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)} items)
@@ -87,81 +88,11 @@ function Cart(props){
                     <Button style={{marginTop: "20px"}} onClick={checkoutHandler} variant="contained" color="primary" disabled= {cartItems.length === 0}>
                         Proceed to Checkout
                     </Button>
-                          {/* <Typography className={classes.addToCart}>Price: ${book.price}</Typography>
-                          <Typography className={classes.addToCart}>Status: {book.countInStock > 0? "In Stock": "Unavailable"}</Typography>
-                          <Typography className={classes.addToCart}>Quantity: <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={qty} onChange={(e) => {setQty(e.target.value)}}
-                                >
-                                    {[...Array(book.countInStock).keys()].map(x => 
-                                    <MenuItem value = {x+1}>{x+1}</MenuItem>)}
-                                </Select></Typography> 
-                            <Button disabled={book.countInStock == 0} 
-                                className={classes.addToCartBtn} variant="contained" 
-                                color="primary"
-                                onClick={handleAddToCart}>Add To Cart</Button> */}
                       </Box>
                     </Grid>
                 </Grid>
             </Container>
         </>
-    //     <div className="cart">
-    //     <div className="cart-list">
-    //         <ul className='cart-list-container'>
-    //             <li>
-    //                 <h3>
-    //                     Shopping Cart
-    //                 </h3>
-    //                 <div>
-    //                     Price
-    //                 </div>
-    //             </li>
-    //             {
-    //                 cartItems.length ===0 ?
-    //                 <div>
-    //                     Cart is empty
-    //                 </div>
-    //                 :
-    //                 cartItems.map( item =>
-    //                     <li><div className="cart-image">
-    //                         <img src={item.image} alt='book' /></div>
-    //                         <div className='cart-name'>
-    //                             <div>
-    //                                 <Link to={'/book/' + item.book}>
-    //                                 {item.name}
-    //                                 </Link>
-    //                             </div>
-    //                             <div style={{marginTop: "10px"}}>
-    //                                 Quantity:
-    //                                 <select value ={item.qty} onChange={(e) => dispatch(addToCart(item.book, e.target.value))} className='cart-screen-selector'>
-    //                                 {[...Array(item.countInStock).keys()].map(x => 
-    //                                 <option value = {x+1}>{x+1}</option>)}
-    //                                 </select>
-    //                                 <button type='button' className='button' onClick={() => removeFromCartHandler(item.book)}>
-    //                                     Remove
-    //                                 </button>
-    //                             </div>
-    //                         </div>
-    //                         <div className="cart-price">
-    //                             ${item.price}
-    //                         </div></li>
-    //                     )
-    //             }
-    //         </ul>
-    //     </div>
-    //     <div className='cart-action'>
-    //         <h3 className="subtotal">
-    //             Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items)
-    //             :
-    //             <br></br>
-    //             $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
-    //         </h3>
-    //        <button onClick={checkoutHandler} className='button-primary' disabled= {cartItems.length === 0}>
-    //            Proceed to Checkout
-    //        </button>
-    //     </div>
-    // </div>
     )
 }
 const useStyles = makeStyles((theme) => ({

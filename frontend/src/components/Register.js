@@ -17,7 +17,6 @@ function Register(props) {
     const dispatch = useDispatch();
     const redirect = props.location.search?props.location.search.split('=')[1]: '/';
     const classes = useStyles();
-    console.log(userInfo);
     useEffect(() => {
         if(userInfo){
             props.history.push(redirect)
@@ -50,8 +49,7 @@ function Register(props) {
                     <TextField id="rePassword" type="password" label="Re-enter Password" variant="outlined" fullWidth
                             onChange ={(e) => setRePassword(e.target.value)} required/>
                     <Button type ="submit" variant="contained" color="primary" fullWidth>Register</Button>
-                    <Typography className = {classes.newTo}>
-                    <hr/>
+                    <hr/><Typography className = {classes.newTo}>
                     Already have an account?
                     </Typography>
                     <Link to={redirect === '/'? 'signin': 'signin?redirect=' + redirect}>

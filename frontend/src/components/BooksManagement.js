@@ -67,7 +67,7 @@ function BooksManagement(props) {
       <>
         <Container style={{paddingBottom: "20px"}}>
           {modalVisible ? <Box className={classes.box} m={1}>
-          <Typography variant="h5" align="center" className = {classes.signInHeader}>
+          <Typography variant="h5" align="center">
                   {id? "Update Book" :" Create Book"}
                 </Typography>
                 {loading && <CircularProgress className="loading"/>}

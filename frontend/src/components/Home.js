@@ -22,7 +22,7 @@ function Home (props) {
         <>
             {loading ? <CircularProgress className="loading"/>:
                 error ? <Typography className="error">Failed to load Products</Typography>:
-                <Grid className={classes.grid} container spacing={1}>{books.map(book => <Grid item xs={12} sm={6} md={4} lg={3}><Card className={classes.root}>
+                <Grid className={classes.grid} container spacing={1}>{books.map(book => <Grid key={book._id} item xs={12} sm={6} md={4} lg={3}><Card className={classes.root}>
                     <Link to={'/book/' + book._id}><CardMedia
                     className={classes.media}
                     image="/images/d1.jpg"

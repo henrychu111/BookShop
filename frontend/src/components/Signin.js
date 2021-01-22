@@ -43,8 +43,7 @@ function Signin(props) {
                     <TextField id="password" label="Password" variant="outlined" fullWidth type="password"
                             onChange ={(e) => setPassword(e.target.value)} required/>
                     <Button type ="submit" variant="contained" color="primary" fullWidth>Sign in</Button>
-                    <Typography className = {classes.newTo}>
-                    <hr/>
+                    <hr/><Typography className = {classes.newTo}>
                     New to BookShop?
                     </Typography>
                     <Link to={redirect === '/'? 'register': 'register?redirect=' + redirect}>
