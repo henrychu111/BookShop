@@ -10,19 +10,30 @@ import { makeStyles } from '@material-ui/core/styles';
 
 function Home (props) {
     const booksList = useSelector(state => state.booksList);
+    const [listOfBooks, setListOfBooks] = useState([]) 
     const {books, loading, error} = booksList;
     const dispatch = useDispatch();
     const classes = useStyles();
+    const bookCategory = props.match.params.category;
 
     useEffect(() => {
         dispatch(listBooks());
     }, [])
 
+    useEffect(() => {
+        const filteredBooks = books.filter((eachBook) => {
+            return eachBook.category === bookCategory;
+        });
+        if (bookCategory)
+            setListOfBooks(filteredBooks)
+        else setListOfBooks(books)
+    }, [books, bookCategory])
+
     return  (
         <>
             {loading ? <CircularProgress className="loading"/>:
                 error ? <Typography className="error">Failed to load Products</Typography>:
-                <Grid className={classes.grid} container spacing={1}>{books.map(book => <Grid key={book._id} item xs={12} sm={6} md={4} lg={3}><Card className={classes.root}>
+                listOfBooks.length > 0 ? <Grid className={classes.grid} container spacing={1}>{listOfBooks.map(book => <Grid key={book._id} item xs={12} sm={6} md={4} lg={3}><Card className={classes.root}>
                     <Link to={'/book/' + book._id}><CardMedia
                     className={classes.media}
                     image={"/images/" + book.image}
@@ -46,7 +57,7 @@ function Home (props) {
                         <span style={{fontFamily:"Manrope", fontSize:"9pt", position:"relative", 
                                     bottom: "3.5px", left: "5px"}}>({book.reviews} reviews)</span>
                     </CardContent>
-                </Card></Grid>)}</Grid>
+                </Card></Grid>)}</Grid>:<Typography style={{marginLeft: "50px"}}>No results found</Typography>
         }</>
     )
 }

@@ -1,7 +1,6 @@
 import {BOOK_LIST_REQUEST, BOOK_LIST_SUCCESS, BOOK_LIST_FAIL, BOOK_DETAILS_REQUEST, BOOK_DETAILS_SUCCESS, BOOK_DETAILS_FAIL, BOOK_SAVE_REQUEST, BOOK_SAVE_SUCCESS, BOOK_SAVE_FAIL, BOOK_DELETE_REQUEST, BOOK_DELETE_SUCCESS, BOOK_DELETE_FAIL} from "../actiontypes/books"; 
 
 function bookListReducer(state= {books: [] }, action) {
-
     switch (action.type) {
         case BOOK_LIST_REQUEST:
             return{loading: true, books: [] };

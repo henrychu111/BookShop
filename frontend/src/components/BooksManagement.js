@@ -20,6 +20,9 @@ function BooksManagement(props) {
     const [description, setDescription] = useState('');
     const booksList = useSelector(state => state.booksList);
     const {loading, books, error} = booksList;
+    const userSignin = useSelector(state => state.userSignin);
+    const userRegister = useSelector(state => state.userRegister);
+    const {userInfo} =  userSignin.userInfo ? userSignin : userRegister;
 
     const bookSave = useSelector(state => state.bookSave);
     const {loading: loadingSave, success: successSave, error: errorSave} = bookSave;
@@ -36,6 +39,8 @@ function BooksManagement(props) {
         }
         dispatch(listBooks());
     }, [successSave, successDelete]);
+
+    
 
 
     const openModal = (book) =>{
@@ -63,6 +68,12 @@ function BooksManagement(props) {
     const deleteHandler = (book) => {
         dispatch( deleteBook(book._id))
     }
+
+    useEffect(() => {
+        if (!userInfo || !userInfo.isAdmin) {
+          props.history.push("/")
+        }
+    }, [])
 
     return (
       <>

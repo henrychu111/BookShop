@@ -19,7 +19,7 @@ import Shipping from './components/Shipping';
 import Payment from './components/Payment';
 import PlaceOrder from './components/PlaceOrder';
 
-function App() {
+function App(props) {
   const [open, setOpen] = useState(false);
   const userSignin = useSelector(state => state.userSignin);
   const userRegister = useSelector(state => state.userRegister);
@@ -56,9 +56,9 @@ function App() {
       </Typography>
     <List>
       {['Fantasy', 'Action', 'Sci-fi'].map((text, index) => (
-        <ListItem button key={text}>
+        <Link to={"/category/" + text} key={text}><ListItem style={{color: "rgba(0, 0, 0, 0.87)"}} button>
           <ListItemText primary={text} />
-        </ListItem>
+        </ListItem></Link>
       ))}
     </List>
   </div>
@@ -73,7 +73,7 @@ function App() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to="/books"><MenuItem style={{color: "rgba(0, 0, 0, 0.87)"}} onClick={handleMenuClose}>Manage Books</MenuItem></Link>
+      {userInfo && userInfo.isAdmin && <Link to="/books"><MenuItem style={{color: "rgba(0, 0, 0, 0.87)"}} onClick={handleMenuClose}>Manage Books</MenuItem></Link>}
       <MenuItem onClick={handleMenuClose}>Orders</MenuItem>
       <MenuItem onClick={handleMenuClose}>Sign out</MenuItem>
     </Menu>
@@ -132,6 +132,7 @@ function App() {
                     <Route path="/shipping"  component={Shipping} />
                     <Route path="/payment"  component={Payment} />
                     <Route path="/placeorder"  component={PlaceOrder} />
+                    <Route path="/category/:category" component={Home} />
                     <Route path="/" exact component={Home} />
                   </div>
       </MuiThemeProvider>
