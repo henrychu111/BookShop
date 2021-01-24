@@ -30,8 +30,7 @@ function Home (props) {
     }, [books, bookCategory])
 
     return  (
-        <>
-            {loading ? <CircularProgress className="loading"/>:
+        <>{loading ? <CircularProgress className="loading"/>:
                 error ? <Typography className="error">Failed to load Products</Typography>:
                 listOfBooks.length > 0 ? <Grid className={classes.grid} container spacing={1}>{listOfBooks.map(book => <Grid key={book._id} item xs={12} sm={6} md={4} lg={3}><Card className={classes.root}>
                     <Link to={'/book/' + book._id}><CardMedia
@@ -57,7 +56,7 @@ function Home (props) {
                         <span style={{fontFamily:"Manrope", fontSize:"9pt", position:"relative", 
                                     bottom: "3.5px", left: "5px"}}>({book.reviews} reviews)</span>
                     </CardContent>
-                </Card></Grid>)}</Grid>:<Typography style={{marginLeft: "50px"}}>No results found</Typography>
+                </Card></Grid>)}</Grid>:!loading && <Typography style={{marginLeft: "50px"}}>No results found</Typography>
         }</>
     )
 }
