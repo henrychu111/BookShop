@@ -57,7 +57,7 @@ function PlaceOrder(props){
                                     {cartItems.map((item) => (
                                     <TableRow key={item.book}>
                                         <TableCell className={classes.cell} component="th" scope="row">
-                                            <img style={{width: "50px"}} src="/images/d1.jpg"></img>
+                                            <img style={{width: "50px"}} src={"/images/" + item.image}></img>
                                         </TableCell>
                                         <TableCell className={classes.cell}><Link to={'/book/' + item.book}>{item.name}</Link></TableCell>
                                         <TableCell className={classes.cell}>

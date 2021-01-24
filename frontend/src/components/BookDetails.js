@@ -28,7 +28,7 @@ function BookDetails(props) {
             {loading ? <CircularProgress className="loading"/> :
               error ? <Typography className='error'>Loading Error</Typography> :
               <Grid className={classes.grid} container spacing={1}>
-                  <Grid item xs={12} sm={6} md={6} lg={4}><img style={{width: "80%"}} src="/images/d1.jpg" alt="book"></img></Grid>
+                  <Grid item xs={12} sm={6} md={6} lg={4}><img style={{width: "80%"}} src={"/images/" + book.image} alt="book"></img></Grid>
                   <Grid item xs={12} sm={6} md={6} lg={4}>
                       <Typography variant="h4" className={classes.title}>{book.name}</Typography>
                       <Typography color="textSecondary" className={classes.author}>

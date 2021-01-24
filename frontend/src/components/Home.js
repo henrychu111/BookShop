@@ -25,7 +25,7 @@ function Home (props) {
                 <Grid className={classes.grid} container spacing={1}>{books.map(book => <Grid key={book._id} item xs={12} sm={6} md={4} lg={3}><Card className={classes.root}>
                     <Link to={'/book/' + book._id}><CardMedia
                     className={classes.media}
-                    image="/images/d1.jpg"
+                    image={"/images/" + book.image}
                     title="Paella dish"
                     /></Link>
                     <CardContent>

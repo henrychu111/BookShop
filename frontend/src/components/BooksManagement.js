@@ -1,5 +1,5 @@
 import { Button, Container, Typography, IconButton, TextField, CircularProgress, Box, TextareaAutosize,
-  Table, TableBody, TableCell, TableContainer,  TableHead, TableRow, Paper } from '@material-ui/core';
+  Table, TableBody, TableCell, TableContainer,  TableHead, TableRow, Paper, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBook, listBooks, saveBook } from '../actions/bookActions';
@@ -28,6 +28,7 @@ function BooksManagement(props) {
     const {loading: loadingDelete, success: successDelete, error: errorDelete} = bookDelete;
     const dispatch = useDispatch();
     const classes = useStyles();
+    const categories = ["Fantasy", "Action", "Sci-Fi"]
 
     useEffect(() => {
         if(successSave){
@@ -83,8 +84,18 @@ function BooksManagement(props) {
                             onChange = {(e) => setImage(e.target.value)} fullWidth/>
                     <TextField id="type" label="Type" value= {type} variant="outlined" required 
                             onChange = {(e) => setType(e.target.value)} fullWidth/>
-                    <TextField id="category" value= {category} label="Category" variant="outlined" required 
-                            onChange = {(e) => setCategory(e.target.value)} fullWidth/>
+                    <FormControl className={classes.formControl} variant="outlined">
+                          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                          <Select required style={{width: "369px"}} 
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select" onChange={(e) => {setCategory(e.target.value)}}
+                                className={classes.selectEmpty} value={category} label="Category"
+                                >
+                                    {categories.map(category => 
+                                    <MenuItem key={category} value = {category}>{category}</MenuItem>)}
+                                </Select></FormControl>
+                    {/* <TextField id="category" value= {category} label="Category" variant="outlined" required 
+                            onChange = {(e) => setCategory(e.target.value)} fullWidth/> */}
                     <TextField id="In Stock" value= {countInStock} type="number" label="In Stock" variant="outlined" required 
                             onChange = {(e) => setCountInStock(e.target.value)} fullWidth/>
                     <TextareaAutosize style={{width: "364px"}} value= {description} aria-label="minimum height" rowsMin={3} placeholder="Description" 
@@ -137,6 +148,13 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1)
     },table: {
     marginTop: "20px",
+formControl: {
+  margin: theme.spacing(1),
+  minWidth: 120,
+},
+selectEmpty: {
+  marginTop: theme.spacing(2),
+},
   },
 },box: {
   border: "1px solid grey",
