@@ -11,7 +11,8 @@ function Signin(props) {
     const userSignin = useSelector(state => state.userSignin);
     const userRegister = useSelector(state => state.userRegister);
     const {userInfo} =  userSignin.userInfo ? userSignin : userRegister;
-    const {loading, error} = userSignin;const dispatch = useDispatch();
+    const {loading, error} = userSignin;
+    const dispatch = useDispatch();
     const redirect = props.location.search?props.location.search.split('=')[1]: '/';
     const classes = useStyles();
 

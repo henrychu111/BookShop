@@ -13,11 +13,12 @@ import Home from './components/Home';
 import BookDetails from './components/BookDetails';
 import Cart from './components/Cart';
 import Signin from './components/Signin';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch} from 'react-redux';
 import Register from './components/Register';
 import Shipping from './components/Shipping';
 import Payment from './components/Payment';
 import PlaceOrder from './components/PlaceOrder';
+import { signout } from './actions/userActions';
 
 function App(props) {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,7 @@ function App(props) {
   const {cartItems} = cart
   const {userInfo} =  userSignin.userInfo ? userSignin : userRegister;
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -42,6 +44,7 @@ function App(props) {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -63,6 +66,7 @@ function App(props) {
     </List>
   </div>
 
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -75,7 +79,9 @@ function App(props) {
     >
       {userInfo && userInfo.isAdmin && <Link to="/books"><MenuItem style={{color: "rgba(0, 0, 0, 0.87)"}} onClick={handleMenuClose}>Manage Books</MenuItem></Link>}
       <MenuItem onClick={handleMenuClose}>Orders</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Sign out</MenuItem>
+      <Link to="/signin"><MenuItem 
+      onClick={() => { handleMenuClose();
+        dispatch(signout()); }}>Sign out</MenuItem></Link>
     </Menu>
   );
 
