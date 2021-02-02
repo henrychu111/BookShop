@@ -79,7 +79,7 @@ function App(props) {
     >
       {userInfo && userInfo.isAdmin && <Link to="/books"><MenuItem style={{color: "rgba(0, 0, 0, 0.87)"}} onClick={handleMenuClose}>Manage Books</MenuItem></Link>}
       <MenuItem onClick={handleMenuClose}>Orders</MenuItem>
-      <Link to="/signin"><MenuItem 
+      <Link to="/signin"><MenuItem style={{color: "rgba(0, 0, 0, 0.87)"}}
       onClick={() => { handleMenuClose();
         dispatch(signout()); }}>Sign out</MenuItem></Link>
     </Menu>
@@ -115,7 +115,7 @@ function App(props) {
                           />
                         </div>
                     <Link to={userInfo ? "/cart" : "/signin"}>
-                    <IconButton className={classes.navBtn} style={{marginRight: "20px"}}><Badge badgeContent={cartItems.length > 0 ? cartItems.length : null} color="secondary"><ShoppingCartIcon /></Badge></IconButton></Link>
+                    <IconButton className={classes.navBtn} style={{marginRight: "20px"}}><Badge badgeContent={userInfo && cartItems.length > 0 ? cartItems.length : null} color="secondary"><ShoppingCartIcon /></Badge></IconButton></Link>
                     {userInfo ? (<IconButton
                             edge="end"
                             aria-label="account of current user"

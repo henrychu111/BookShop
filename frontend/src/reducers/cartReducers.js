@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT, CART_SAVE_SHIPPING } from "../actiontypes/cart";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT, CART_SAVE_SHIPPING, USER_EMPTYCART } from "../actiontypes/cart";
 
 function cartReducer(state= {cartItems:[], shipping:{}, payment:{}}, action) {
     switch(action.type) {
@@ -15,6 +15,8 @@ function cartReducer(state= {cartItems:[], shipping:{}, payment:{}}, action) {
             return {...state, shipping: action.payload};
         case CART_SAVE_PAYMENT:
             return {...state, payment: action.payload};
+        case USER_EMPTYCART:
+            return {cartItems: []};
         default:
             return state
             

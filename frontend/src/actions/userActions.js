@@ -1,6 +1,8 @@
 import axios from "axios";
 import Cookie from 'js-cookie';
-import { USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT_SUCCESS } from "../actiontypes/users";
+import { USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, 
+    USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT_SUCCESS } from "../actiontypes/users";
+import { USER_EMPTYCART } from '../actiontypes/cart'
 
 const signin = (email, password) => async (dispatch) => {
     dispatch({type: USER_SIGNIN_REQUEST, payload: {email, password}});
@@ -14,8 +16,9 @@ const signin = (email, password) => async (dispatch) => {
 }
 const signout = () => async (dispatch) => {
     dispatch({type: USER_SIGNOUT_SUCCESS, payload: null});
+    dispatch({type: USER_EMPTYCART, payload: null});
     Cookie.set('userInfo', null);
-  
+    Cookie.set("cartItems", null);
 }
 const register = (name, email, password) => async (dispatch) => {
     dispatch({type: USER_REGISTER_REQUEST, payload: {name, email, password}});
