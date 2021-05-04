@@ -1,7 +1,7 @@
 import { TextField, Box, Typography, makeStyles, Button } from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import { saveShipping } from '../actions/cartActions';
 import Checkout from '../shippingComponents/Checkout';
 
@@ -14,7 +14,7 @@ function Shipping(props) {
     const dispatch = useDispatch();
     const classes = useStyles();
 
-    const submitHandler =(e) =>{
+    const submitHandler =(e) => {
         e.preventDefault();
         dispatch(saveShipping({address, city, postalCode, country}));
         props.history.push('/payment');
