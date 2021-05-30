@@ -15,7 +15,7 @@ function Cart(props){
     const classes = useStyles();
 
     const bookId = props.match.params.id;
-    const qty = props.location.search?  Number(props.location.search.split("=")[1]):1;
+    const qty = props.location.search ?  Number(props.location.search.split("=")[1]):1;
     const dispatch = useDispatch();
     const removeFromCartHandler = (bookId) => {
         dispatch(removeFromCart(bookId))
@@ -42,10 +42,10 @@ function Cart(props){
                                 <Table aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
+                                        <TableCell>Cover</TableCell>
+                                        <TableCell>Title</TableCell>
+                                        <TableCell>Amount</TableCell>
+                                        <TableCell>Delete</TableCell>
                                         <TableCell align="right">Price</TableCell>
                                     </TableRow>
                                 </TableHead>

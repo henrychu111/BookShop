@@ -78,7 +78,7 @@ function App(props) {
       onClose={handleMenuClose}
     >
       {userInfo && userInfo.isAdmin && <Link to="/books"><MenuItem style={{color: "rgba(0, 0, 0, 0.87)"}} onClick={handleMenuClose}>Manage Books</MenuItem></Link>}
-      <MenuItem onClick={handleMenuClose}>Orders</MenuItem>
+      <Link to="/placeorder"><MenuItem onClick={handleMenuClose}>Orders</MenuItem></Link>
       <Link to="/signin"><MenuItem style={{color: "rgba(0, 0, 0, 0.87)"}}
       onClick={() => { handleMenuClose();
         dispatch(signout()); }}>Sign out</MenuItem></Link>

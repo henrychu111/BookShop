@@ -26,6 +26,6 @@ function userRegisterReducer (state={}, action) {
     }
 }
 
-export{
+export {
     userSigninReducer, userRegisterReducer
 }

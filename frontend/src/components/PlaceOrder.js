@@ -47,9 +47,9 @@ function PlaceOrder(props){
                                 <Table aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
+                                        <TableCell>Cover</TableCell>
+                                        <TableCell>Title</TableCell>
+                                        <TableCell>Amount</TableCell>
                                         <TableCell align="right">Price</TableCell>
                                     </TableRow>
                                 </TableHead>

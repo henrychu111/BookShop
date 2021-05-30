@@ -24,7 +24,7 @@ function Payment(props) {
                 Payment
                 </Typography>
               <form className={classes.root} onSubmit={submitHandler}>
-                    <FormControlLabel value="female" control={<Radio value='Paypal' color = "primary" onChange ={(e) => setPayment(e.target.value)}/>} label="Paypal" />
+                    <FormControlLabel value="paypal" control={<Radio value='Paypal' color = "primary" onChange ={(e) => setPayment(e.target.value)}/>} label="Paypal" />
                     <Button type ="submit" variant="contained" color="primary" fullWidth>Continue</Button>
           </form></Box>
     </div>

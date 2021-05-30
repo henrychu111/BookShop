@@ -36,7 +36,6 @@ function Home (props) {
                     <Link to={'/book/' + book._id}><CardMedia
                     className={classes.media}
                     image={"/images/" + book.image}
-                    title="Paella dish"
                     /></Link>
                     <CardContent>
                         <Link to={'/book/' + book._id}><Typography variant="h6" className={classes.title}>

@@ -14,7 +14,7 @@ const addToCart = (bookId, qty) => async (dispatch, getState) =>{
             countInStock: data.countInStock,
             qty
         }});
-        const {cart: {cartItems}} =getState();
+        const {cart: {cartItems}} = getState();
         Cookie.set("cartItems", JSON.stringify(cartItems));
     }
     catch (error){
